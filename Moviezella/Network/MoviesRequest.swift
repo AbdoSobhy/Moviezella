@@ -11,10 +11,11 @@ import Alamofire
 class MoviesRequest {
     static let shared = MoviesRequest()
     
-    func featchMovies(_ completionHandeller : @escaping (_ success : Movie , _ error : Error?)->Void) {
+    func featchMovies(pageNumber : Int,_ completionHandeller : @escaping (_ success : Movie , _ error : Error?)->Void) {
         let url = "https://api.themoviedb.org/3/movie/top_rated"
         let apiKey = "90fd0c6e987f62a4def180feaf9edd9a"
-        let param = ["api_key": apiKey]
+        let param = ["api_key": apiKey,
+                     "page" : pageNumber] as [String : Any]
         AF.request(url,parameters: param).responseData { (response : AFDataResponse<Data>) in
             switch response.result{
             case .success(let data):

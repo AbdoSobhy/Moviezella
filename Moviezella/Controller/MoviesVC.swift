@@ -10,18 +10,33 @@ import UIKit
 
 class MoviesVC: UIViewController {
     var Movies = [Result]()
+    var pageNumber = 1
     @IBOutlet weak var moviesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        MoviesRequest.shared.featchMovies { (result, err) in
+        loadData()
+    }
+    func loadData() {
+        MoviesRequest.shared.featchMovies(pageNumber: pageNumber) { (result, err) in
             if result.results.isEmpty != true {
-                self.Movies = result.results
+                self.Movies.append(contentsOf: result.results)
+                self.pageNumber += 1
                 self.moviesTableView.reloadData()
             }
         }
     }
 }
+extension MoviesVC: UITableViewDataSourcePrefetching{
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for index in indexPaths{
+            if index.row >= Movies.count - 3 {
+                loadData()
+                break
+            }
+        }
+    }
+}
+
 extension MoviesVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Movies.count
