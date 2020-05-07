@@ -9,18 +9,20 @@
 import UIKit
 
 class DetailedMovieVC: UIViewController {
-    @IBOutlet weak var overView: UILabel!
+    @IBOutlet weak var overView: UITextView!
     @IBOutlet weak var adult: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var voteCount: UILabel!
     @IBOutlet weak var voteAvarage: UILabel!
     var movie = Result()
     @IBOutlet weak var movieImage: UIImageView!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillData(curentMovie: movie)
-      
-        
+                fillData(curentMovie: movie)
     }
     func fillData(curentMovie : Result) {
         /// image
