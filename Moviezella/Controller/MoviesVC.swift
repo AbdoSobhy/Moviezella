@@ -7,20 +7,36 @@
 //
 
 import UIKit
+import SkeletonView
 
 class MoviesVC: UIViewController {
     var Movies = [Result]()
+    var genre = [Genre]()
     var pageNumber = 1
     @IBOutlet weak var moviesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.showAnimatedGradientSkeleton() // Gradient animated
+        loadGenres()
         loadData()
     }
+    
+    func loadGenres(){
+        MoviesRequest.shared.getGenre { (result, err) in
+           if !result.genres.isEmpty{
+            self.genre = result.genres
+            }
+        }
+    }
     func loadData() {
-        MoviesRequest.shared.featchMovies(pageNumber: pageNumber) { (result, err) in
-            if result.results.isEmpty != true {
+        
+        MoviesRequest.shared.getTopRatedMovie(pageNumber: pageNumber) { (result, err) in
+            if !result.results.isEmpty{
                 self.Movies.append(contentsOf: result.results)
-                self.pageNumber += 1
+                if result.total_pages > self.pageNumber{
+                    self.pageNumber += 1
+                }
+                self.view.hideSkeleton()
                 self.moviesTableView.reloadData()
             }
         }
@@ -37,14 +53,21 @@ extension MoviesVC: UITableViewDataSourcePrefetching{
     }
 }
 
-extension MoviesVC : UITableViewDataSource{
+extension MoviesVC : SkeletonTableViewDataSource{
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "MovieCell"
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Movies.count
+        return self.Movies.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieCell else {return UITableViewCell()}
-        cell.configureCell(movie: Movies[indexPath.row])
+        cell.configureCell(movie: Movies[indexPath.row], genre: genre)
         return cell
     }
     

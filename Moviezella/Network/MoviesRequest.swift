@@ -11,28 +11,38 @@ import Alamofire
 class MoviesRequest {
     static let shared = MoviesRequest()
     
-    func featchMovies(pageNumber : Int,_ completionHandeller : @escaping (_ success : Movie , _ error : Error?)->Void) {
-        let url = "https://api.themoviedb.org/3/movie/top_rated"
-        let apiKey = "90fd0c6e987f62a4def180feaf9edd9a"
-        let param = ["api_key": apiKey,
-                     "page" : pageNumber] as [String : Any]
-        AF.request(url,parameters: param).responseData { (response : AFDataResponse<Data>) in
-            switch response.result{
+    func getGenre(handeler : @escaping (_ success : Allgenres ,_ error : Error?)->Void)  {
+        AF.request(MoviesRouter.genre).responseData { (response) in
+            switch response.result {
             case .success(let data):
                 do {
-                    let jsonData = try JSONDecoder().decode(Movie.self, from: data)
-                    completionHandeller(jsonData,nil)
+                    let jsonData = try JSONDecoder().decode(Allgenres.self, from: data)
+                    handeler(jsonData,nil)
                 } catch {
-
+                    print("cant parse")
                 }
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func getTopRatedMovie(pageNumber : Int ,_ handeler: @escaping (_ success : Movie ,_ error : Error?) -> Void ) {
+        AF.request(MoviesRouter.topRated(pageNumber: pageNumber)).responseData { (respnonse) in
+            switch respnonse.result{
+            case .success(let data):
                 
+                do {
+                     let jsonData = try JSONDecoder().decode(Movie.self, from: data)
+                    handeler(jsonData,nil)
+
+                } catch  {
+                    print("Cant Parse")
+                }
                 
             case .failure(let err):
                 print(err)
             }
         }
-        
-        
-        
     }
 }

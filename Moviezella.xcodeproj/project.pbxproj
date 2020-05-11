@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524F61432468AD1700A8FE22 /* MoviesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F61422468AD1700A8FE22 /* MoviesRouter.swift */; };
+		524F61452468C9E700A8FE22 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F61442468C9E700A8FE22 /* Genre.swift */; };
 		526E45212462F91D005E2565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526E45202462F91D005E2565 /* AppDelegate.swift */; };
 		526E45232462F91D005E2565 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526E45222462F91D005E2565 /* SceneDelegate.swift */; };
 		526E45252462F91D005E2565 /* MoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526E45242462F91D005E2565 /* MoviesVC.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		12FE5BD08499CD1EE935BF43 /* Pods_Moviezella.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moviezella.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		524F61422468AD1700A8FE22 /* MoviesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRouter.swift; sourceTree = "<group>"; };
+		524F61442468C9E700A8FE22 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		526E451D2462F91D005E2565 /* Moviezella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moviezella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526E45202462F91D005E2565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526E45222462F91D005E2565 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				526E453F24630566005E2565 /* Movie.swift */,
+				524F61442468C9E700A8FE22 /* Genre.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				526E45412463079D005E2565 /* MoviesRequest.swift */,
+				524F61422468AD1700A8FE22 /* MoviesRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -250,7 +256,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524F61452468C9E700A8FE22 /* Genre.swift in Sources */,
 				526E453E24630003005E2565 /* DetailedMovieVC.swift in Sources */,
+				524F61432468AD1700A8FE22 /* MoviesRouter.swift in Sources */,
 				526E45252462F91D005E2565 /* MoviesVC.swift in Sources */,
 				526E45422463079D005E2565 /* MoviesRequest.swift in Sources */,
 				526E454024630566005E2565 /* Movie.swift in Sources */,

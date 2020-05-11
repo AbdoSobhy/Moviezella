@@ -9,6 +9,11 @@ target 'Moviezella' do
 
     pod 'Alamofire', '~> 5.0'
     pod 'Kingfisher', '~> 5.0'
-
-
+    pod "SkeletonView", '~> 1.8.7'
 end
+
+plugin 'cocoapods-keys', {
+:project => "Moviezella",
+:keys => [
+  "MoviesApiKeys"
+]}

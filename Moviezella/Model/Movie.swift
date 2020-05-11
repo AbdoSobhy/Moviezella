@@ -7,16 +7,16 @@
 //
 
 import Foundation
-struct Movie : Codable {
+class Movie : Codable {
     
     var page : Int
-    var total_results : Int?
-    var total_pages : Int?
+    var total_results : Int
+    var total_pages : Int
     var results : [Result]
     
  
 }
-struct Result : Codable {
+class Result : Codable {
          var popularity : Double?
          var id : Int?
          var video : Bool?
