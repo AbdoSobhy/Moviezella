@@ -14,7 +14,7 @@ class DetailedMovieVC: UIViewController {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var voteCount: UILabel!
     @IBOutlet weak var voteAvarage: UILabel!
-    var movie = Result()
+    var movie = MovieResult()
     @IBOutlet weak var movieImage: UIImageView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -24,7 +24,7 @@ class DetailedMovieVC: UIViewController {
         super.viewDidLoad()
                 fillData(curentMovie: movie)
     }
-    func fillData(curentMovie : Result) {
+    func fillData(curentMovie : MovieResult) {
         /// image
         let baseImageUrl = "https://image.tmdb.org/t/p/w500"
         self.movieImage.kf.setImage(with: URL(string: baseImageUrl+movie.poster_path!))

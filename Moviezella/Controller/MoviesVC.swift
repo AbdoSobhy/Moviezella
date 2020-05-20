@@ -7,40 +7,65 @@
 //
 
 import UIKit
+//import CoreData
 import SkeletonView
 
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
+
 class MoviesVC: UIViewController {
-    var Movies = [Result]()
+    var Movies = [MovieResult]()
     var genre = [Genre]()
     var pageNumber = 1
     @IBOutlet weak var moviesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.showAnimatedGradientSkeleton() // Gradient animated
         loadGenres()
         loadData()
     }
     
+    
+    @available(iOS 11.0, *)
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        view.showAnimatedGradientSkeleton() // Gradient animated
+        
+    }
+    
+    
     func loadGenres(){
         MoviesRequest.shared.getGenre { (result, err) in
-           if !result.genres.isEmpty{
-            self.genre = result.genres
+            if !result.genres.isEmpty{
+                self.genre = result.genres
             }
         }
     }
     func loadData() {
         
         MoviesRequest.shared.getTopRatedMovie(pageNumber: pageNumber) { (result, err) in
-            if !result.results.isEmpty{
-                self.Movies.append(contentsOf: result.results)
-                if result.total_pages > self.pageNumber{
+            if (result != nil) {
+                self.Movies.append(contentsOf: result!.results)
+                if result!.total_pages > self.pageNumber{
                     self.pageNumber += 1
                 }
                 self.view.hideSkeleton()
                 self.moviesTableView.reloadData()
+            }else{
+                CoreData.shared.featchMovies { (response, err) in
+                    guard let results = response else {return}
+                    self.Movies.append(contentsOf: results)
+                    print(results)
+                }
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
 }
 extension MoviesVC: UITableViewDataSourcePrefetching{
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {

@@ -13,7 +13,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var movieTitle: UILabel!
     
-    func configureCell(movie : Result , genre : [Genre]){
+    func configureCell(movie : MovieResult , genre : [Genre]){
         let baseImageUrl = "https://image.tmdb.org/t/p/w500"
         self.movieImage.kf.setImage(with: URL(string: baseImageUrl+movie.poster_path!))
         getGenre(movies : movie , genres : genre)
@@ -23,7 +23,7 @@ class MovieCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func getGenre(movies : Result ,genres : [Genre]) {
+    func getGenre(movies : MovieResult ,genres : [Genre]) {
         var movieGenres = [String]()
         for movieId in movies.genre_ids! {
             for genreId in genres {

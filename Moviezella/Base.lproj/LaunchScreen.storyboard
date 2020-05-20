@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,19 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RB5-fK-dcm">
-                                <rect key="frame" x="82" y="324" width="250" height="247.5"/>
-                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="Mwa-oC-JB1"/>
-                                    <constraint firstAttribute="width" secondItem="RB5-fK-dcm" secondAttribute="height" multiplier="1:1" id="gOt-fJ-h9r"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMDb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6x-Vt-5MC">
+                                <rect key="frame" x="92.000000000000014" y="396" width="230.33333333333337" height="104"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="80"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96848052740097046" green="0.83569446125147295" blue="0.3745173861515167" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="RB5-fK-dcm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0tT-eD-6pk"/>
-                            <constraint firstItem="RB5-fK-dcm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="adn-Ns-kts"/>
+                            <constraint firstItem="g6x-Vt-5MC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kfz-3n-kas"/>
+                            <constraint firstItem="g6x-Vt-5MC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Rya-kK-6kz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,7 +36,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="film" catalog="system" width="128" height="93"/>
-    </resources>
 </document>

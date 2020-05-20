@@ -27,17 +27,22 @@ class MoviesRequest {
         }
     }
     
-    func getTopRatedMovie(pageNumber : Int ,_ handeler: @escaping (_ success : Movie ,_ error : Error?) -> Void ) {
+    func getTopRatedMovie(pageNumber : Int ,_ handeler: @escaping (_ success : Movie? ,_ error : Error?) -> Void ) {
         AF.request(MoviesRouter.topRated(pageNumber: pageNumber)).responseData { (respnonse) in
             switch respnonse.result{
             case .success(let data):
                 
                 do {
                      let jsonData = try JSONDecoder().decode(Movie.self, from: data)
+                    CoreData.shared.deleteRecords()
+                    for result in jsonData.results{
+                        CoreData.shared.insertMovies(movies: result)
+                    }
                     handeler(jsonData,nil)
 
                 } catch  {
-                    print("Cant Parse")
+                    handeler(nil,nil)
+
                 }
                 
             case .failure(let err):

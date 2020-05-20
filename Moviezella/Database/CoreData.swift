@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 
 class CoreData {
     static let shared = CoreData()
     
-    func insertMovies(movies : Result) {
+    func insertMovies(movies : MovieResult) {
         guard let manageContext = appDelegate?.persistentContainer.viewContext else {return}
         let movie = MoviesEntity(context: manageContext)
         movie.adult  = movies.adult ?? false
@@ -46,13 +47,31 @@ class CoreData {
         }
     }
     
-    func featchMovies(compleation : @escaping (_ success:[MoviesEntity]?,_ err:Error?)->Void){
+    func featchMovies(compleation : @escaping (_ success:[MovieResult]?,_ err:Error?)->Void){
         guard let manageContext = appDelegate?.persistentContainer.viewContext else {return}
         let featchRequest = NSFetchRequest<MoviesEntity>(entityName: "MoviesEntity")
         do {
+            var movies = [MovieResult]()
             let data = try manageContext.fetch(featchRequest)
-            compleation(data,nil)
-
+            for obj in data {
+                let mov = MovieResult()
+                
+                mov.adult = true
+                mov.overview = "obj.value(forKey: ) as? String"
+                mov.poster_path = " sdfd"
+                mov.release_date = "fdsffds"
+                mov.vote_average = 0.0
+                mov.vote_count = 0
+                mov.title = "ffgdf"
+                mov.genre_ids = [32,32,4]
+                
+                print(mov)
+                movies.append(mov)
+                
+            }
+            
+            compleation(movies,nil)
+            
         } catch {
             print(error)
             compleation(nil,error)
