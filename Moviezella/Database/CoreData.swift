@@ -23,7 +23,7 @@ class CoreData {
         movie.title = movies.title
         movie.vote_count = Int32(movies.vote_count!)
         movie.vote_average = movies.vote_average ?? 0.0
-        movie.genre = "Should be here"
+        movie.genre = movies.genre_ids
         do {
             try manageContext.save()
         } catch {
@@ -56,18 +56,16 @@ class CoreData {
             for obj in data {
                 let mov = MovieResult()
                 
-                mov.adult = true
-                mov.overview = "obj.value(forKey: ) as? String"
-                mov.poster_path = " sdfd"
-                mov.release_date = "fdsffds"
-                mov.vote_average = 0.0
-                mov.vote_count = 0
-                mov.title = "ffgdf"
-                mov.genre_ids = [32,32,4]
+                mov.adult = obj.adult
+                mov.overview = obj.overview
+                mov.poster_path = obj.poster_path
+                mov.release_date = obj.release_date
+                mov.vote_average = obj.vote_average
+                mov.vote_count = Int(obj.vote_count)
+                mov.title = obj.title
+                mov.genre_ids = obj.genre
                 
-                print(mov)
                 movies.append(mov)
-                
             }
             
             compleation(movies,nil)

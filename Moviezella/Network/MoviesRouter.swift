@@ -18,7 +18,7 @@ enum MoviesRouter : URLRequestConvertible {
     var url : URL {
         switch self {
         case .topRated:
-            return URL(string: "https://api.themoviedb.org/3/movie/top_ratedd")!
+            return URL(string: "https://api.themoviedb.org/3/movie/top_rated")!
         case .genre:
             return URL(string: "https://api.themoviedb.org/3/genre/movie/list")!
         }

@@ -42,7 +42,6 @@ class MoviesRequest {
 
                 } catch  {
                     handeler(nil,nil)
-
                 }
                 
             case .failure(let err):

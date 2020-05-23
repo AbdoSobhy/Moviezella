@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MoviesEntity" representedClassName="MoviesEntity" syncable="YES" codeGenerationType="class">
         <attribute name="adult" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
-        <attribute name="genre" attributeType="String"/>
+        <attribute name="genre" attributeType="Transformable" customClassName="[Int]"/>
         <attribute name="overview" attributeType="String" defaultValueString=""/>
         <attribute name="poster_path" attributeType="String" defaultValueString=""/>
         <attribute name="release_date" attributeType="String" defaultValueString=""/>

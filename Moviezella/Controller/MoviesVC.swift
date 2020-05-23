@@ -54,7 +54,9 @@ class MoviesVC: UIViewController {
                 CoreData.shared.featchMovies { (response, err) in
                     guard let results = response else {return}
                     self.Movies.append(contentsOf: results)
-                    print(results)
+                    self.view.hideSkeleton()
+                    self.moviesTableView.reloadData()
+
                 }
             }
         }
